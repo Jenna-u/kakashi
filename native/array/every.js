@@ -1,0 +1,8 @@
+Array.prototype.every = function(){
+  for (var i=0; i<this.length; i++) {
+    if (!callback(this[i], i, this)) {
+        return false
+    }
+  }
+  return true;
+}

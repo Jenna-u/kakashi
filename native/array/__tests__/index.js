@@ -1,6 +1,7 @@
 import test from 'ava'
 import '../copy_within'
 import '../concat'
+import '../fill'
 
 function testArrayMethod (t, array, name) {
 	return function () {
@@ -42,3 +43,10 @@ test('concat', t => {
 	testConcat(1)
 	testConcat(arguments)
 });
+
+test('fill', t => {
+	const testFill = testArrayMethod(t, undefined, 'fill')
+	testFill(1)
+	testFill(4, 1, 2)
+	testFill(-1, -1, -1);
+})
