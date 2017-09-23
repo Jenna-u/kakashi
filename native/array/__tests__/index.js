@@ -2,6 +2,9 @@ import test from 'ava'
 import '../copy_within'
 import '../concat'
 import '../fill'
+import '../find'
+import '../includes'
+import '../join'
 
 function testArrayMethod (t, array, name) {
 	return function () {
@@ -48,5 +51,35 @@ test('fill', t => {
 	const testFill = testArrayMethod(t, undefined, 'fill')
 	testFill(1)
 	testFill(4, 1, 2)
-	testFill(-1, -1, -1);
+	testFill(-1, -1, -1)
+	testFill(-100, -100, -100)
+	testFill([], 1, {})
+	testFill(arguments)
+	testFill('fsfsfs')
+})
+
+test('find', t => {
+	const testFind = testArrayMethod(t, undefined, 'find')
+	function isMax(ele) {
+		return ele > 6
+	}
+	testFind(isMax)
+})
+
+test('includes', t => {
+	const testIncludes = testArrayMethod(t, undefined, 'includes')
+	testIncludes(1, 2)
+	testIncludes(0)
+	testIncludes(-1, 0)
+	testIncludes(-100, -100)
+	testIncludes('sxxxdxx')
+})
+
+test('join', t => {
+	const testJoin = testArrayMethod(t, undefined, 'join')
+	testJoin()
+	testJoin('-')
+	testJoin('+')
+	testJoin('s')
+	testJoin('111')
 })
