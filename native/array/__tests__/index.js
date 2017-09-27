@@ -1,5 +1,5 @@
 import test from 'ava'
-import '../isArray'
+import '../is_array'
 import '../copy_within'
 import '../concat'
 import '../fill'
@@ -90,4 +90,25 @@ test('reduce', t => {
 	const testReduce = testArrayMethod(t, undefined, 'reduce')
 	function total(sum, value) { return sum + value }
 	testReduce(total)
+})
+
+test('isArray', t => {
+	let testcase = []
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
+	testcase = [1, 2]
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
+	testcase = [1, 2, {a: 1, b: 2}]
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
+	testcase = new Array()
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
+	testcase = Object.keys(testcase)
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
+	testcase = (function() {
+		const a = {}
+		a[0] = 1;
+		a[1] = 2;
+		a.length = 2;
+		return a
+	}())
+	t.is(Array.isArray(testcase), Array._isArray(testcase))
 })
