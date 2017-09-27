@@ -1,10 +1,12 @@
 import test from 'ava'
+import '../isArray'
 import '../copy_within'
 import '../concat'
 import '../fill'
 import '../find'
 import '../includes'
 import '../join'
+import '../reduce'
 
 function testArrayMethod (t, array, name) {
 	return function () {
@@ -82,4 +84,10 @@ test('join', t => {
 	testJoin('+')
 	testJoin('s')
 	testJoin('111')
+})
+
+test('reduce', t => {
+	const testReduce = testArrayMethod(t, undefined, 'reduce')
+	function total(sum, value) { return sum + value }
+	testReduce(total)
 })
