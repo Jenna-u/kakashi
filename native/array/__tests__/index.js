@@ -2,11 +2,16 @@ import test from 'ava'
 import '../is_array'
 import '../copy_within'
 import '../concat'
+import '../every'
 import '../fill'
 import '../find'
 import '../includes'
 import '../join'
 import '../reduce'
+import '../push'
+import '../reverse'
+import '../some'
+import '../unshift'
 
 function testArrayMethod (t, array, name) {
 	return function () {
@@ -48,6 +53,16 @@ test('concat', t => {
 	testConcat(1)
 	testConcat(arguments)
 });
+
+test('concat', t => {
+	const testEvery = testArrayMethod(t, undefined, 'every');
+	function isMax(ele) { return ele > 0 }
+	testEvery(isMax)
+	function isSame(ele) { return ele === ele }
+	testEvery(isSame)
+	function isSmall(ele) { return ele > -1 }
+	testEvery(isSmall)
+})
 
 test('fill', t => {
 	const testFill = testArrayMethod(t, undefined, 'fill')
@@ -111,4 +126,41 @@ test('isArray', t => {
 		return a
 	}())
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
+})
+
+test('push', t => {
+	const testPush = testArrayMethod(t, undefined, 'push')
+	testPush(1)
+	testPush(56,6,7,8)
+	testPush('a', 'b', 'c')
+	testPush({}, undefined, null)
+	testPush([],0, '{d}')
+})
+
+test('reverse', t => {
+	const testReverse = testArrayMethod(t, undefined, 'reverse')
+	testReverse()
+	let testcase = [{}, 'a', 'c', undefined]
+	t.deepEqual(testcase.reverse(), testcase._reverse())
+	testcase = [[1], [2,3], [6,7,8]]
+	t.deepEqual(testcase.reverse(), testcase._reverse())
+})
+
+test('some', t => {
+	const testSome = testArrayMethod(t, undefined, 'some')
+	function isSame(ele) { return ele === ele }
+	testSome(isSame)
+	function isSmall(ele) { return ele > -1 }
+	testSome(isSmall)
+	function isSameBig (ele) { return ele > 10 }
+	testSome(isSameBig)
+})
+
+test('unshift', t => {
+	const testUnshift = testArrayMethod(t, undefined, 'unshift')
+	testUnshift(['h'], 2)
+	testUnshift(undefined)
+	testUnshift({})
+	testUnshift('foo')
+	testUnshift([[1, '{}', [100]]])
 })
