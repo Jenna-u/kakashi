@@ -12,6 +12,8 @@ import '../push'
 import '../reverse'
 import '../some'
 import '../unshift'
+import '../slice'
+import '../splice'
 
 function testArrayMethod (t, array, name) {
 	return function () {
@@ -163,4 +165,22 @@ test('unshift', t => {
 	testUnshift({})
 	testUnshift('foo')
 	testUnshift([[1, '{}', [100]]])
+})
+
+test('slice', t => {
+	const testSlice = testArrayMethod(t, undefined, 'slice')
+	testSlice()
+	testSlice(0)
+	testSlice(-1, -2)
+	testSlice(4, 7)
+	testSlice(-100, -100)
+	testSlice('-1', '0')
+	testSlice('4', '7')
+})
+
+test('splice', t => {
+	const testSplice = testArrayMethod(t, undefined, 'splice')
+	testSplice(1)
+	testSplice(0, 1)
+	testSplice(2, 0, 'hello')
 })
