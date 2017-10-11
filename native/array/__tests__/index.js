@@ -180,7 +180,11 @@ test('slice', t => {
 
 test('splice', t => {
 	const testSplice = testArrayMethod(t, undefined, 'splice')
+	testSplice(0)
 	testSplice(1)
+	testSplice(2, 1)
 	testSplice(0, 1)
 	testSplice(2, 0, 'hello')
+	testSplice(2, 8)
+	testSplice(-10, 8)
 })

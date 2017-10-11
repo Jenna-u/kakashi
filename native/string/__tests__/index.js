@@ -39,6 +39,11 @@ test('split', t => {
   t.deepEqual(testcase.split(' '), testcase._split(' '))
   t.deepEqual(testcase.split('a'), testcase._split('a'))
   t.deepEqual(testcase.split('o'), testcase._split('o'))
+  // 正则暂不处理
+  // t.deepEqual(testcase.split(/\w+/gi), testcase._split(/\w+/gi))
+
+  t.deepEqual(testcase.split(' ', 2), testcase._split(' ', 2))
+  t.deepEqual(testcase.split('', 2), testcase._split('', 2))
 })
 
 test('substr', t => {
