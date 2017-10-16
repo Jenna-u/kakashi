@@ -1,3 +1,1 @@
-import browserEnv from 'browser-env';
-
-browserEnv(['window', 'document', 'navigator']);
+require('browser-env')();
