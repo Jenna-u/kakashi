@@ -4,7 +4,7 @@
   "description": "Method Implementation of ES5, ES6, Lodash, jQuery and etc.",
   "main": "index.js",
   "repository": "git@github.com:cagen/coding_with_seventeen.git",
-  "author": "cagen <cagen53070830@gmail.com>",
+  "author": "seventeen <huzhijuan77@icloud.com>",
   "license": "MIT",
   "scripts": {
     "test": "ava",
@@ -12,6 +12,12 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "browser-env": "^3.2.1",
     "nyc": "^11.2.1"
-  }
+  },
+  "ava": {
+		"require": [
+			"./test/helpers/setup-browser-env.js"
+		]
+	}
 }
