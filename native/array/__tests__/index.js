@@ -14,6 +14,7 @@ import '../some'
 import '../unshift'
 import '../slice'
 import '../splice'
+import '../filter'
 
 function testArrayMethod(t, array, name) {
 	return function () {
@@ -189,4 +190,14 @@ test('splice', t => {
 	testSplice(2, 0, 'hello')
 	testSplice(2, 8)
 	testSplice(-10, 8)
+})
+
+test('filter', t => {
+	const testFilter = testArrayMethod(t, undefined, 'filter')
+	function maxTest(el) { return el >= 4 }
+	function minTest(el) { return el <= 0 }
+	function sameEl(el) { return el === 7 }
+	testFilter(maxTest)
+	testFilter(minTest)
+	testFilter(sameEl)
 })
