@@ -15,7 +15,7 @@ import '../unshift'
 import '../slice'
 import '../splice'
 
-function testArrayMethod (t, array, name) {
+function testArrayMethod(t, array, name) {
 	return function () {
 		let arr1 = array
 		let arr2 = array
@@ -46,9 +46,9 @@ test('copyWithin', t => {
 
 
 test('concat', t => {
-	const testConcat = testArrayMethod(t, [1,2,3,4], 'concat')
-	testConcat([5,6,7])
-	testConcat([5,6,7], [5, 3])
+	const testConcat = testArrayMethod(t, [1, 2, 3, 4], 'concat')
+	testConcat([5, 6, 7])
+	testConcat([5, 6, 7], [5, 3])
 	testConcat([])
 	testConcat([], 1, {})
 	testConcat()
@@ -106,7 +106,9 @@ test('join', t => {
 test('reduce', t => {
 	const testReduce = testArrayMethod(t, undefined, 'reduce')
 	function total(sum, value) { return sum + value }
+	function maxCallback2(max, cur) { return Math.max(max, cur) }
 	testReduce(total)
+	testReduce(maxCallback2)
 })
 
 test('isArray', t => {
@@ -114,13 +116,13 @@ test('isArray', t => {
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
 	testcase = [1, 2]
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
-	testcase = [1, 2, {a: 1, b: 2}]
+	testcase = [1, 2, { a: 1, b: 2 }]
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
 	testcase = new Array()
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
 	testcase = Object.keys(testcase)
 	t.is(Array.isArray(testcase), Array._isArray(testcase))
-	testcase = (function() {
+	testcase = (function () {
 		const a = {}
 		a[0] = 1;
 		a[1] = 2;
@@ -133,10 +135,10 @@ test('isArray', t => {
 test('push', t => {
 	const testPush = testArrayMethod(t, undefined, 'push')
 	testPush(1)
-	testPush(56,6,7,8)
+	testPush(56, 6, 7, 8)
 	testPush('a', 'b', 'c')
 	testPush({}, undefined, null)
-	testPush([],0, '{d}')
+	testPush([], 0, '{d}')
 })
 
 test('reverse', t => {
@@ -144,7 +146,7 @@ test('reverse', t => {
 	testReverse()
 	let testcase = [{}, 'a', 'c', undefined]
 	t.deepEqual(testcase.reverse(), testcase._reverse())
-	testcase = [[1], [2,3], [6,7,8]]
+	testcase = [[1], [2, 3], [6, 7, 8]]
 	t.deepEqual(testcase.reverse(), testcase._reverse())
 })
 
@@ -154,7 +156,7 @@ test('some', t => {
 	testSome(isSame)
 	function isSmall(ele) { return ele > -1 }
 	testSome(isSmall)
-	function isSameBig (ele) { return ele > 10 }
+	function isSameBig(ele) { return ele > 10 }
 	testSome(isSameBig)
 })
 
